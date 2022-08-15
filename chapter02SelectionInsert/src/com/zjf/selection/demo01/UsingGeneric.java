@@ -27,6 +27,7 @@ public class UsingGeneric {
                 swap(arr, minIndex, i);
 
             }
+            System.out.println("\t--> 第" + (i + 1) + "次排序: " + Arrays.toString(arr));
         }
     }
 

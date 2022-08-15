@@ -6,6 +6,7 @@
 
 package com.zjf.utils;
 
+import com.zjf.insertion.teachercode.InsertionSort;
 import com.zjf.selection.demo01.UsingGeneric;
 
 public class SortingHelper {
@@ -22,6 +23,9 @@ public class SortingHelper {
         long startTime = System.nanoTime();
         if(sortName.equals("SelectionSort")){
             UsingGeneric.sort(arr);
+        }
+        if (sortName.equals("InsertionSort")){
+            InsertionSort.sort2(arr);
         }
         long endTime = System.nanoTime();
 

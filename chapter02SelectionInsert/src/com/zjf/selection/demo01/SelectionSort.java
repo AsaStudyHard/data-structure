@@ -23,13 +23,15 @@ public class SelectionSort {
                     arr[minIndex] = arr[i];
                     arr[i] = min;
                 }
+                System.out.println("\t第 " + i + " 次 --> " + Arrays.toString(arr));
             }
         }
 
         public static void main(String[] args) {
             Integer[] arr = {6, 1, 3, 2, 4, 5};
+            System.out.println("Using select sort");
             SelectionSort.sort(arr);
-            System.out.println(Arrays.toString(arr));
+//            System.out.println(Arrays.toString(arr));
 
         }
 }
