@@ -6,17 +6,14 @@
 
 package com.zjf;
 
-public class Array {
+public class Array<E> {
     // 数组存放的元素个数
     private int size;
     // 实际存放数据的容器
-    private int[] data;
+    private E[] data;
 
     public Array(int capacity) {
-        if (capacity <= 0 || capacity > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException("传递的capacity异常");
-        }
-        this.data = new int[capacity];
+        this.data = (E[]) new Object[capacity];
         this.size = 0;
     }
 
@@ -53,7 +50,7 @@ public class Array {
         return size == 0;
     }
 
-    public void add(int index, int e) {
+    public void add(int index, E e) {
         // 每个元素往后移动
         for (int i = this.size - 1; i >= index; i--) {
             this.data[i + 1] = this.data[i];
@@ -62,12 +59,12 @@ public class Array {
         this.size++;
     }
 
-    public void addLast(int e) {
+    public void addLast(E e) {
         //在数组尾部添加元素
         this.add(this.size, e);
     }
 
-    public void addFirst(int e) {
+    public void addFirst(E e) {
         // 数组头部添加元素
         this.add(0, e);
     }
@@ -79,7 +76,7 @@ public class Array {
      * @param index: 指定的位置
      * @return: return index of data
      */
-    public int get(int index) {
+    public E get(int index) {
         // 对index进行检查
         if (index >= this.size || index < 0) {
             throw new IllegalArgumentException("index is illegal argument, index need > 0 and < size ");
@@ -93,7 +90,7 @@ public class Array {
      * @param index 指定位置的索引
      * @param e     修改后的数据
      */
-    public void set(int index, int e) {
+    public void set(int index, E e) {
         if (index > this.size || index < 0) {
             throw new IllegalArgumentException("index is illegal argument, index need > 0 and < size ");
         }
@@ -103,12 +100,13 @@ public class Array {
 
     /**
      * 判断元素是否包含在数组中
+     *
      * @param e 判断的元素
      * @return 返回是否存在
      */
-    public boolean contains(int e){
+    public boolean contains(E e) {
         for (int i = 0; i < this.size; i++) {
-            if (this.data[i] == e){
+            if (this.data[i].equals(e)) {
                 return true;
             }
         }
@@ -117,12 +115,13 @@ public class Array {
 
     /**
      * 返回该元素对应的索引
+     *
      * @param e 判断的元素
      * @return 对应的索引
      */
-    public int find(int e){
+    public int find(E e) {
         for (int i = 0; i < this.size; i++) {
-            if (this.data[i] == e){
+            if (this.data[i].equals(e)) {
                 return i;
             }
         }
@@ -131,31 +130,32 @@ public class Array {
 
     /**
      * 删除指定位置的元素, 返回删除的元素
+     *
      * @param index 指定的位置
      * @return 返回删除的元素
      */
-    public int remove(int index){
+    public E remove(int index) {
         // 一个元素一个元素向前覆盖, 需要从index开始覆盖
-        if (index >= size || index < 0 ){
+        if (index >= size || index < 0) {
             throw new IllegalArgumentException("索引异常, 请检查索引");
         }
-        int res = this.data[index];
-        for (int i = index + 1; i < size; ++i){
+        E res = this.data[index];
+        for (int i = index + 1; i < size; ++i) {
             this.data[i - 1] = this.data[i];
         }
-        this.size --;
+        this.size--;
         return res;
     }
 
-    public int removeLast(){
+    public E removeLast() {
         return this.remove(this.size - 1);
     }
 
-    public int removeFirst(){
+    public E removeFirst() {
         return this.remove(0);
     }
 
-    public void removeElement(int e){
+    public void removeElement(E e) {
         int index = this.find(e);
         this.remove(index);
     }
@@ -175,38 +175,6 @@ public class Array {
     }
 
     public static void main(String[] args) {
-        Array myArray = new Array();
-        for (int i = 0; i < 10; i++) {
-            myArray.add(i, i + 10);
-            System.out.println(myArray);
-        }
-
-        // 获取指定位置的元素
-        int e = myArray.get(4);
-        System.out.println("index = 4, element = " + e);
-        // 修改指定位置的元素
-        myArray.set(4, 999);
-        System.out.println(myArray);
-
-        // 删除元素
-        myArray.remove(0);
-        System.out.println(myArray);
-        myArray.remove(5);
-        System.out.println(myArray);
-        myArray.removeElement(999);
-        System.out.println(myArray);
-
-        myArray.removeLast();
-        System.out.println(myArray);
-
-        myArray.removeFirst();
-        System.out.println(myArray);
-
-        for (int i = 0; i < 5; i++) {
-            myArray.remove(0);
-            System.out.println(myArray);
-        }
-
 
     }
 }
