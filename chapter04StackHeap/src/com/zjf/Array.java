@@ -6,8 +6,6 @@
 
 package com.zjf;
 
-import java.util.Arrays;
-
 public class Array<E> {
     // 数组存放的元素个数
     private int size;
